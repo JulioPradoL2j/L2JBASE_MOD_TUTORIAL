@@ -1,20 +1,22 @@
 package mods.voiceds;
 
+import ext.mods.extensions.interfaces.L2JExtension;
 import ext.mods.gameserver.handler.IVoicedCommandHandler;
+import ext.mods.gameserver.handler.VoicedCommandHandler;
 import ext.mods.gameserver.model.actor.Player;
 
-public class VoicedExemplo implements IVoicedCommandHandler
+public class VoicedExemplo implements L2JExtension, IVoicedCommandHandler
 {
 	
-	private String[] _VoicedCommandExetra =
+	private String[] _command =
 	{
-		"exemplo",
+		"exemplo"
 	};
 	
 	@Override
 	public String[] getVoicedCommandList()
 	{
-		return _VoicedCommandExetra;
+		return _command;
 	}
 	
 	@Override
@@ -25,6 +27,27 @@ public class VoicedExemplo implements IVoicedCommandHandler
 			player.sendMessage("Comando extra funcional.");
 		}
 		return false;
+	}
+
+	
+	@Override
+	public String getName()
+	{
+		
+		return "Voiced Command Teste";
+	}
+
+	@Override
+	public void onDisable()
+	{
+		
+		
+	}
+	
+	@Override
+	public void onLoad()
+	{
+		VoicedCommandHandler.getInstance().registerHandler(new VoicedExemplo());
 	}
 	
 }
